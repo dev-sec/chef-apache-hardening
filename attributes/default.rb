@@ -20,3 +20,5 @@
 #
 
 include_attribute 'apache2'
+
+default['apache']['traceenable'] = 'Off'
