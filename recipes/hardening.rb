@@ -25,11 +25,12 @@ template File.join(node['apache']['dir'], '/conf-enabled/', 'hardening.conf') do
   owner 'root'
   group node['apache']['root_group']
   mode '0640'
-  notifies :reload, 'service[apache2]', :delayed
+  notifies :restart, 'service[apache2]', :delayed
 end
 
 node['apache_hardening']['modules_to_disable'].each do |module_to_disable|
   apache_module module_to_disable do
     enable false
+    notifies :restart, 'service[apache2]', :delayed
   end
 end
