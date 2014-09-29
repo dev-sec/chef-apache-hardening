@@ -22,3 +22,4 @@
 # security options
 
 default['apache_hardening']['allowed_http_methods'] = %w( GET POST )
+default['apache_hardening']['modules_to_disable'] = %w( cgi cgid )
