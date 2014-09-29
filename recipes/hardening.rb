@@ -18,3 +18,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+template File.join(node['apache']['dir'], '/conf-enabled/', 'hardening.conf') do
+  action :create
+  source 'hardening.cnf.erb'
+  owner 'root'
+  group node['apache']['root_group']
+  mode '0640'
+  notifies :reload, 'service[apache2]', :delayed
+end

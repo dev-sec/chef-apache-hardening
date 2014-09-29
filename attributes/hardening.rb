@@ -20,3 +20,5 @@
 #
 
 # security options
+
+default['apache_hardening']['allowed_http_methods'] = %w( GET POST )
