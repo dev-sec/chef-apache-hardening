@@ -34,3 +34,16 @@ node['apache_hardening']['modules_to_disable'].each do |module_to_disable|
     notifies :restart, 'service[apache2]', :delayed
   end
 end
+
+# change all the already created resource so we do not flap on o-rw
+run_context.resource_collection.each do |resource|
+  resource.mode('0640') if resource.name =~ /#{node['apache']['dir']}/ && resource.mode == '0644'
+  resource.mode('0750') if resource.name =~ /#{node['apache']['dir']}/ && resource.mode == '0755'
+  resource.mode('0640') if resource.name == 'apache2.conf'
+end
+
+# change all the other files not defined as resources
+execute 'remove world readable files' do
+  command "chmod -R o-rw #{node['apache']['dir']}"
+  not_if "find #{node['apache']['dir']} -perm -o+r -type f -o -perm -o+w -type f | wc -l | egrep '^0$'"
+end
