@@ -35,6 +35,13 @@ node['apache_hardening']['modules_to_disable'].each do |module_to_disable|
   end
 end
 
+begin
+  r = resources(template: "#{node['apache']['dir']}/mods-available/alias.conf")
+  r.cookbook('apache-hardening')
+rescue Chef::Exceptions::ResourceNotFound
+  Chef::Log.info("ignoring update of alias.conf since it is not used #{node['apache']['dir']}/mods-available/alias.conf")
+end
+
 # change all the already created resource so we do not flap on o-rw
 run_context.resource_collection.each do |resource|
   resource.mode('0640') if resource.name =~ /#{node['apache']['dir']}/ && resource.mode == '0644'
