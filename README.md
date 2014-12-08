@@ -11,23 +11,87 @@ This cookbook provides a secure overlay for apache configuration.
 
 ## Requirements
 
-* Opscode chef
-
-## Attributes
-
-... wip ...
+* chef
 
 ## Usage
 
-... wip ...
+A sample role may look like:
 
-## FAQ / Pitfalls
+```json
+{
+    "name": "apache",
+    "default_attributes": { },
+    "override_attributes": { },
+    "json_class": "Chef::Role",
+    "description": "Apache Hardened Server Test Role",
+    "chef_type": "role",
+    "run_list": [
+        "recipe[apt]",
+        "recipe[apache2]",
+        "recipe[apache-hardening]"
+    ]
+}
+```
 
-... wip ...
+## Recipes
+
+### apache-hardening::hardening (default)
+
+This recipe is an overlay recipe for the [apache2 cookbook](https://github.com/viverae-cookbooks/apache2) and applies `apache-hardening::hardening`
+
+Add the following to your runlist and customize security option attributes
+
+```
+"recipe[apache2]",
+"recipe[apache-hardening]"
+```
+
+This hardening recipe installs the hardening but expects an existing installation of Apache2.
+
+## Security Options
+
+* `node['apache']['traceenable'] = 'Off'`
+   This directive overrides the behavior of TRACE for both the core server and mod_proxy. 
+   See [http://httpd.apache.org/docs/2.2/mod/core.html#traceenable](http://httpd.apache.org/docs/2.2/mod/core.html#traceenable) for details
+   Defaults to: `Off`
+
+* `node['apache_hardening']['allowed_http_methods'] = %w( GET POST )`
+   A list of HTTP methods that should be allowed in the server. 
+   See [http://httpd.apache.org/docs/trunk/mod/mod_allowmethods.html](http://httpd.apache.org/docs/trunk/mod/mod_allowmethods.html) for details
+   Defaults to: `GET POST`
+
+* `node['apache_hardening']['modules_to_disable'] = %w( cgi cgid )`
+   This parameter sets a list of modules that should be disabled on the target server.
+   See [http://httpd.apache.org/docs/current/mod/](http://httpd.apache.org/docs/current/mod/) for details
+   Defaults to: `cgi cgid`
+
+## Tests
+
+```
+# Install dependencies
+gem install bundler
+bundle install
+
+# Do lint checks
+bundle exec rake lint
+
+# Fetch tests
+bundle exec thor kitchen:fetch-remote-tests
+
+# fast test on one machine
+bundle exec kitchen test default-ubuntu-1204
+
+# test on all machines
+bundle exec kitchen test
+
+# for development
+bundle exec kitchen create default-ubuntu-1204
+bundle exec kitchen converge default-ubuntu-1204
+```
 
 ## Contributors + Kudos
 
-... wip ...
+* Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
 
 ## Contributing
 
