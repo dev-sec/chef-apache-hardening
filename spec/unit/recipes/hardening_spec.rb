@@ -49,9 +49,9 @@ describe 'apache-hardening::hardening' do
 
       next unless (resource.respond_to? :mode) && !resource.mode.nil?
 
+      expect(resource.mode).to eq('0750') if resource.name =~ /#{chef_run.node['apache']['dir']}/ && resource.mode[1].eql?('7')
+      expect(resource.mode).to eq('0640') if resource.name =~ /#{chef_run.node['apache']['dir']}/ && resource.mode[1].eql?('6')
       expect(resource.mode).to eq('0640') if resource.name == 'apache2.conf'
-      expect(resource.mode).to eq('0640') if resource.name =~ /#{chef_run.node['apache']['dir']}/ && resource.mode == '0755'
-      expect(resource.mode).to eq('0750') if resource.name =~ /#{chef_run.node['apache']['dir']}/ && resource.mode == '0644'
 
     end
 
