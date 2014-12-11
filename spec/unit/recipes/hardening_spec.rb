@@ -44,6 +44,7 @@ describe 'apache-hardening::hardening' do
   end
 
   it 'changes all the already created resources' do
+  it 'makes sure that it does not flap on o-rw' do
 
     chef_run.run_context.resource_collection.each do |resource|
 
