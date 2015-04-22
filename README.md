@@ -3,7 +3,8 @@
 [![Supermarket](http://img.shields.io/cookbook/v/apache-hardening.svg)][1]
 [![Build Status](http://img.shields.io/travis/hardening-io/chef-apache-hardening.svg)][2]
 [![Code Coverage](http://img.shields.io/coveralls/hardening-io/chef-apache-hardening.svg)][3]
-[![Dependencies](http://img.shields.io/gemnasium/hardening-io/#{proj_name}.svg)][4]
+[![Dependencies](http://img.shields.io/gemnasium/hardening-io/chef-apache-hardening.svg)][4]
+[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][5]
 
 ## Description
 
