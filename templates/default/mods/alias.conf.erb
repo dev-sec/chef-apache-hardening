@@ -15,7 +15,7 @@
   Alias /icons/ "<%= node['apache']['icondir'] %>/"
 
   <Directory "<%= node['apache']['icondir'] %>">
-    Options -Indexes MultiViews -FollowSymLinks
+    Options -Indexes -MultiViews -FollowSymLinks
     AllowOverride None
 <% if node['apache']['version'] == "2.4" -%>
     Require all granted
