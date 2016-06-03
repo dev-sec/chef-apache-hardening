@@ -48,4 +48,6 @@ platforms:
 suites:
 - name: default
   run_list:
-  - role[apache]
+    - recipe[apt]
+    - recipe[apache2]
+    - recipe[apache-hardening]

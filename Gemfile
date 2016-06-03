@@ -10,8 +10,10 @@ group :test do
   gem 'chefspec',   '~> 4.2.0'
   gem 'foodcritic', '~> 4.0'
   gem 'thor-foodcritic'
-  gem 'rubocop',    '~> 0.28.0'
+  gem 'rubocop',    '~> 0.31.0'
   gem 'coveralls',  require: false
+  gem 'minitest', '~> 5.5'
+  gem 'simplecov', '~> 0.10'
 end
 
 group :development do
@@ -25,9 +27,12 @@ end
 group :integration do
   gem 'test-kitchen', '~> 1.0'
   gem 'kitchen-vagrant'
+  gem 'kitchen-inspec'
   gem 'kitchen-sharedtests', '~> 0.2.0'
+  gem 'concurrent-ruby', '~> 0.9'
+  gem 'kitchen-dokken'
 end
 
-group :openstack do
-  gem 'kitchen-openstack'
+group :tools do
+  gem 'github_changelog_generator', '~> 1.12.0'
 end
