@@ -69,5 +69,4 @@ suites:
 
   verifier:
     inspec_tests:
-      - ./test/integration
-      #- https://github.com/dev-sec/tests-apache-hardening.git
+      - https://github.com/dev-sec/tests-apache-hardening.git
