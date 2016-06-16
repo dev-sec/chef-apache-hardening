@@ -1,9 +1,9 @@
 # apache-hardening (Chef cookbook)
 
 [![Supermarket](http://img.shields.io/cookbook/v/apache-hardening.svg)][1]
-[![Build Status](http://img.shields.io/travis/hardening-io/chef-apache-hardening.svg)][2]
-[![Code Coverage](http://img.shields.io/coveralls/hardening-io/chef-apache-hardening.svg)][3]
-[![Dependencies](http://img.shields.io/gemnasium/hardening-io/chef-apache-hardening.svg)][4]
+[![Build Status](http://img.shields.io/travis/dev-sec/chef-apache-hardening.svg)][2]
+[![Code Coverage](http://img.shields.io/coveralls/dev-sec/chef-apache-hardening.svg)][3]
+[![Dependencies](http://img.shields.io/gemnasium/dev-sec/chef-apache-hardening.svg)][4]
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][5]
 
 ## Description
@@ -13,6 +13,13 @@ This cookbook provides a secure overlay for apache configuration.
 ## Requirements
 
 * chef
+
+### Platform
+
+- Debian 7, 8
+- Ubuntu 14.04, 16.04
+- CentOS 6.8, 7.2
+- OracleLinux 6.8, 7.2
 
 ## Usage
 
@@ -52,12 +59,12 @@ This hardening recipe installs the hardening but expects an existing installatio
 ## Security Options
 
 * `node['apache']['traceenable'] = 'Off'`
-   This directive overrides the behavior of TRACE for both the core server and mod_proxy. 
+   This directive overrides the behavior of TRACE for both the core server and mod_proxy.
    See [http://httpd.apache.org/docs/2.2/mod/core.html#traceenable](http://httpd.apache.org/docs/2.2/mod/core.html#traceenable) for details
    Defaults to: `Off`
 
 * `node['apache_hardening']['allowed_http_methods'] = %w( GET POST )`
-   A list of HTTP methods that should be allowed in the server. 
+   A list of HTTP methods that should be allowed in the server.
    See [http://httpd.apache.org/docs/trunk/mod/mod_allowmethods.html](http://httpd.apache.org/docs/trunk/mod/mod_allowmethods.html) for details
    Defaults to: `GET POST`
 
@@ -68,6 +75,8 @@ This hardening recipe installs the hardening but expects an existing installatio
 
 ## Tests
 
+For local testing you can use vagrant or docker to run tests locally. You will have to install Virtualbox and Vagrant or docker on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant or [Docker Downloads](https://docs.docker.com/mac/) package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
+
 ```
 # Install dependencies
 gem install bundler
@@ -76,22 +85,23 @@ bundle install
 # Do lint checks
 bundle exec rake lint
 
-# Fetch tests
-bundle exec thor kitchen:fetch-remote-tests
-
 # fast test on one machine
-bundle exec kitchen test default-ubuntu-1204
+bundle exec kitchen test default-ubuntu-1404
 
 # test on all machines
 bundle exec kitchen test
 
 # for development
-bundle exec kitchen create default-ubuntu-1204
-bundle exec kitchen converge default-ubuntu-1204
+bundle exec kitchen create default-ubuntu-1404
+bundle exec kitchen converge default-ubuntu-1404
+bundle exec kitchen verify default-ubuntu-1204
 ```
 
 ## Contributors + Kudos
 
+* Dominik Richter [arlimus](https://github.com/arlimus)
+* Christoph Hartmann [chris-rock](https://github.com/chris-rock)
+* Patrick Muench [atomic111](https://github.com/atomic111)
 * Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
 
 ## Contributing
@@ -115,7 +125,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 [1]: https://supermarket.getchef.com/cookbooks/apache-hardening
-[2]: http://travis-ci.org/hardening-io/chef-apache-hardening
-[3]: https://coveralls.io/r/hardening-io/chef-apache-hardening
-[4]: https://gemnasium.com/hardening-io/chef-apache-hardening
-[5]: https://gitter.im/hardening-io/general
+[2]: http://travis-ci.org/dev-sec/chef-apache-hardening
+[3]: https://coveralls.io/r/dev-sec/chef-apache-hardening
+[4]: https://gemnasium.com/dev-sec/chef-apache-hardening
+[5]: https://gitter.im/dev-sec/general
