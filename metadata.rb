@@ -6,7 +6,7 @@ description 'Installs and configures a secure apache server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.9'
 
-depends 'apache2', '~> 2.0.0'
+depends 'apache2', '~> 3.2.2'
 
 recipe 'apache-hardening::default', 'calls hardening recipe'
 recipe 'apache-hardening::hardening', 'add hardening configuration apache server'
