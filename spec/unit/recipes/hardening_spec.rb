@@ -4,7 +4,10 @@ require 'spec_helper'
 
 describe 'apache-hardening::hardening' do
 
-  let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
+  before { allow_any_instance_of(Chef::Recipe).to receive(:search) }
+  let(:runner) { ChefSpec::ServerRunner.new }
+  let(:node) { runner.node }
+  let(:chef_run) { runner.converge(described_recipe) }
 
   before do
     stub_command('/usr/sbin/apache2 -t')
