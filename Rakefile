@@ -48,11 +48,11 @@ end
 
 # Automatically generate a changelog for this project. Only loaded if
 # the necessary gem is installed.
-begin
-  require 'github_changelog_generator/task'
-  GitHubChangelogGenerator::RakeTask.new :changelog
-rescue LoadError
-  puts '>>>>> GitHub Changelog Generator not loaded, omitting tasks'
+
+desc 'Generate the changelog'
+task :changelog do
+  version = File.read('metadata.rb')[/^version '(.*)'$/, 1]
+  system "github_changelog_generator -u dev-sec -p chef-apache-hardening --future-release #{version}"
 end
 
 namespace :test do
