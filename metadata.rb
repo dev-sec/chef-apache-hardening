@@ -1,6 +1,6 @@
 name 'apache-hardening'
-maintainer 'Edmund Haselwanter'
-maintainer_email 'me@ehaselwanter.com'
+maintainer 'DevSec Hardening Framework Team'
+maintainer_email 'hello@dev-sec.io'
 license 'Apache v2.0'
 description 'Installs and configures a secure apache server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
