@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'berkshelf',  '~> 8.0'
 gem 'chef',       '>= 12.0'
-gem 'inspec',     '~> 5'
+gem 'inspec',     '~> 6'
 
 group :test do
   gem 'rake'
