@@ -13,7 +13,7 @@ group :test do
   gem 'thor-foodcritic'
   gem 'rubocop',    '~> 1.86.0'
   gem 'coveralls',  require: false
-  gem 'minitest', '~> 5.5'
+  gem 'minitest', '~> 6.0'
   gem 'simplecov', '~> 0.10'
 end
 
