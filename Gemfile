@@ -14,7 +14,7 @@ group :test do
   gem 'rubocop',    '~> 1.90.0'
   gem 'coveralls',  require: false
   gem 'minitest', '~> 5.5'
-  gem 'simplecov', '~> 0.10'
+  gem 'simplecov', '~> 1.0'
 end
 
 group :development do
