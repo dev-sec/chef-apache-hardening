@@ -1,9 +1,6 @@
-# encoding: utf-8
-
 require 'spec_helper'
 
 describe 'apache-hardening::default' do
-
   before { allow_any_instance_of(Chef::Recipe).to receive(:search) }
   let(:runner) { ChefSpec::ServerRunner.new }
   let(:node) { runner.node }
@@ -17,5 +14,4 @@ describe 'apache-hardening::default' do
   it 'includes apache-hardening::hardening recipe' do
     expect(chef_run).to include_recipe('apache-hardening::hardening')
   end
-
 end
